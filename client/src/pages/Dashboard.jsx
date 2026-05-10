@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Plus, LogOut, Clock, Calendar, BarChart3, Users, Briefcase, Edit2, Trash2, Sun, Moon, Timer, ArrowLeft, ExternalLink, Key, ShieldCheck, User, Ticket } from 'lucide-react';
 import LogHoursModal from '../components/LogHoursModal';
+import API_BASE_URL from '../config';
 
 const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
   const [timesheets, setTimesheets] = useState([]);
@@ -37,7 +38,7 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
   const fetchTimesheets = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/timesheets', {
+      const res = await axios.get(`${API_BASE_URL}/api/timesheets`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTimesheets(res.data);
@@ -52,7 +53,7 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
     setLoadingStats(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/team-stats', {
+      const res = await axios.get(`${API_BASE_URL}/api/team-stats`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTeamStats(res.data);
@@ -68,7 +69,7 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
     setLoadingStats(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/team-ticket-details/${ticket}`, {
+      const res = await axios.get(`${API_BASE_URL}/api/team-ticket-details/${ticket}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTicketDetails(res.data);
@@ -115,7 +116,7 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
     if (!tsId) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/timesheets/${tsId}`, {
+      await axios.delete(`${API_BASE_URL}/api/timesheets/${tsId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchTimesheets();
@@ -131,7 +132,7 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
     setCpSuccess('');
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/auth/change-password', cpData, {
+      await axios.post(`${API_BASE_URL}/api/auth/change-password`, cpData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCpSuccess('Password updated successfully!');

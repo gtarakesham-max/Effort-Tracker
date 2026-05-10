@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { UserPlus, Shield, Users, ArrowLeft, Edit2, Trash2, Sun, Moon } from 'lucide-react';
+import API_BASE_URL from '../config';
 
 const AdminPanel = ({ user, theme, toggleTheme }) => {
   const [users, setUsers] = useState([]);
@@ -19,7 +20,7 @@ const AdminPanel = ({ user, theme, toggleTheme }) => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/users', {
+      const res = await axios.get(`${API_BASE_URL}/api/users`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(res.data);
@@ -37,7 +38,7 @@ const AdminPanel = ({ user, theme, toggleTheme }) => {
     try {
       const token = localStorage.getItem('token');
       if (isEditing) {
-        await axios.put(`http://localhost:5000/api/users/${formData.user_id}`, formData, {
+        await axios.put(`${API_BASE_URL}/api/users/${formData.user_id}`, formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
@@ -72,7 +73,7 @@ const AdminPanel = ({ user, theme, toggleTheme }) => {
     if (!window.confirm(`Are you sure you want to delete user ${userId}? All their timesheets will also be deleted.`)) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/users/${userId}`, {
+      await axios.delete(`${API_BASE_URL}/api/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchUsers();

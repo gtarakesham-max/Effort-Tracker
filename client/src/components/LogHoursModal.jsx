@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { X } from 'lucide-react';
+import API_BASE_URL from '../config';
 
 const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/activities');
+        const res = await axios.get(`${API_BASE_URL}/api/activities`);
         setActivities(res.data);
       } catch (err) {
         console.error(err);
@@ -42,11 +43,11 @@ const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
     try {
       const token = localStorage.getItem('token');
       if (initialData) {
-        await axios.put(`http://localhost:5000/api/timesheets/${initialData.TS_TIMESHEET_ID}`, formData, {
+        await axios.put(`${API_BASE_URL}/api/timesheets/${initialData.TS_TIMESHEET_ID}`, formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
-        await axios.post('http://localhost:5000/api/timesheets', formData, {
+        await axios.post(`${API_BASE_URL}/api/timesheets`, formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }

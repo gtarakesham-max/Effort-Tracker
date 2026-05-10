@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { LogIn, User, Lock, Mail, KeyRound, ArrowLeft } from 'lucide-react';
+import API_BASE_URL from '../config';
 
 const Login = ({ setUser }) => {
   const [usernameOrId, setUsernameOrId] = useState('');
@@ -21,7 +22,7 @@ const Login = ({ setUser }) => {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', { usernameOrId, password });
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, { usernameOrId, password });
       localStorage.setItem('token', res.data.token);
       setUser(res.data.user);
     } catch (err) {
@@ -36,7 +37,7 @@ const Login = ({ setUser }) => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('http://localhost:5000/api/auth/forgot-password', { email, userId: userIdForReset });
+      await axios.post(`${API_BASE_URL}/api/auth/forgot-password`, { email, userId: userIdForReset });
       setForgotMode('otp');
       setSuccess('OTP has been sent to your email.');
     } catch (err) {
@@ -51,7 +52,7 @@ const Login = ({ setUser }) => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('http://localhost:5000/api/auth/verify-otp', { email, otp });
+      await axios.post(`${API_BASE_URL}/api/auth/verify-otp`, { email, otp });
       setForgotMode('reset');
       setSuccess('');
     } catch (err) {
@@ -66,7 +67,7 @@ const Login = ({ setUser }) => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('http://localhost:5000/api/auth/reset-password', { email, otp, newPassword });
+      await axios.post(`${API_BASE_URL}/api/auth/reset-password`, { email, otp, newPassword });
       setForgotMode('none');
       setSuccess('Password reset successful! Please login with your new password.');
       setEmail('');

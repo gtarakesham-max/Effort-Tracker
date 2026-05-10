@@ -85,7 +85,7 @@ const AdminPanel = ({ user, theme, toggleTheme }) => {
     <div className="main-content" style={{ maxWidth: '1200px', margin: '0 auto' }}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <button onClick={() => window.location.href='/dashboard'} className="btn" style={{ padding: '0.5rem' }}>
+          <button onClick={() => window.location.href = '/dashboard'} className="btn" style={{ padding: '0.5rem' }}>
             <ArrowLeft size={20} />
           </button>
           <div>
@@ -116,27 +116,27 @@ const AdminPanel = ({ user, theme, toggleTheme }) => {
             <div className="grid-cols-2 grid">
               <div>
                 <label>User ID</label>
-                <input value={formData.user_id} onChange={(e) => setFormData({...formData, user_id: e.target.value})} required disabled={isEditing} />
+                <input value={formData.user_id} onChange={(e) => setFormData({ ...formData, user_id: e.target.value })} required disabled={isEditing} />
               </div>
               <div>
                 <label>Username</label>
-                <input value={formData.username} onChange={(e) => setFormData({...formData, username: e.target.value})} required />
+                <input value={formData.username} onChange={(e) => setFormData({ ...formData, username: e.target.value })} required />
               </div>
             </div>
             <div className="grid-cols-2 grid">
               <div>
                 <label>Email</label>
-                <input type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} required />
+                <input type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
               </div>
               <div>
                 <label>Password {isEditing && '(Leave blank to keep current)'}</label>
-                <input type="password" value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})} required={!isEditing} />
+                <input type="password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} required={!isEditing} />
               </div>
             </div>
             <div className="grid-cols-2 grid">
               <div>
                 <label>Role</label>
-                <select value={formData.role} onChange={(e) => setFormData({...formData, role: e.target.value})}>
+                <select value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })}>
                   <option value="US">User (US)</option>
                   <option value="TL">Team Lead (TL)</option>
                   <option value="MG">Manager (MG)</option>
@@ -145,12 +145,12 @@ const AdminPanel = ({ user, theme, toggleTheme }) => {
               </div>
               <div>
                 <label>Team</label>
-                <input value={formData.team} onChange={(e) => setFormData({...formData, team: e.target.value})} placeholder="e.g. Apollo" />
+                <input value={formData.team} onChange={(e) => setFormData({ ...formData, team: e.target.value })} placeholder="e.g. Apollo" />
               </div>
             </div>
             <div>
               <label>Access Team (For Managers/TLs)</label>
-              <input value={formData.access_team} onChange={(e) => setFormData({...formData, access_team: e.target.value})} placeholder="Team they can view" />
+              <input value={formData.access_team} onChange={(e) => setFormData({ ...formData, access_team: e.target.value })} placeholder="Team they can view" />
             </div>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <button type="submit" className="btn btn-primary">{isEditing ? 'Update User' : 'Create User'}</button>
@@ -172,7 +172,7 @@ const AdminPanel = ({ user, theme, toggleTheme }) => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
-                 <th>Team</th>
+                <th>Team</th>
                 <th>Access Team</th>
                 <th style={{ textAlign: 'right' }}>Actions</th>
               </tr>

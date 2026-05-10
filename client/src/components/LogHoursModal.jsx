@@ -29,7 +29,7 @@ const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Future date validation
     const selectedDate = new Date(formData.TS_DATE);
     const today = new Date();
@@ -59,8 +59,8 @@ const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
   const isOffDay = formData.TS_WORKING_STATUS === 'PTO' || formData.TS_WORKING_STATUS === 'Holiday';
 
   return (
-    <div style={{ 
-      position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, 
+    <div style={{
+      position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
       background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(4px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem'
     }}>
@@ -76,11 +76,11 @@ const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
           <div className="grid-cols-2 grid">
             <div>
               <label>Working Status</label>
-              <select 
-                value={formData.TS_WORKING_STATUS} 
+              <select
+                value={formData.TS_WORKING_STATUS}
                 onChange={(e) => setFormData({
-                  ...formData, 
-                  TS_WORKING_STATUS: e.target.value, 
+                  ...formData,
+                  TS_WORKING_STATUS: e.target.value,
                   TS_EFFORT_HOURS: (e.target.value === 'PTO' || e.target.value === 'Holiday') ? '0' : '8',
                   TS_ACTIVITY: (e.target.value === 'PTO' || e.target.value === 'Holiday') ? '-' : (e.target.value === 'General' ? 'General' : 'coding')
                 })}
@@ -93,12 +93,12 @@ const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
             </div>
             <div>
               <label>Date</label>
-              <input 
-                type="date" 
-                value={formData.TS_DATE} 
-                onChange={(e) => setFormData({...formData, TS_DATE: e.target.value})} 
+              <input
+                type="date"
+                value={formData.TS_DATE}
+                onChange={(e) => setFormData({ ...formData, TS_DATE: e.target.value })}
                 max={new Date().toLocaleDateString('en-CA')}
-                required 
+                required
               />
             </div>
           </div>
@@ -108,26 +108,26 @@ const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
               <div className="grid-cols-2 grid">
                 <div>
                   <label>Role</label>
-                  <select value={formData.TS_ROLE} onChange={(e) => setFormData({...formData, TS_ROLE: e.target.value})}>
+                  <select value={formData.TS_ROLE} onChange={(e) => setFormData({ ...formData, TS_ROLE: e.target.value })}>
                     <option value="DEV">DEV</option>
                     <option value="QA">QA</option>
                   </select>
                 </div>
                 <div>
                   <label>Jira Ticket {formData.TS_WORKING_STATUS === 'Working' && <span style={{ color: 'var(--danger)' }}>*</span>}</label>
-                  <input 
-                    type="text" 
-                    placeholder="PROJ-123" 
+                  <input
+                    type="text"
+                    placeholder="PROJ-123"
                     required={formData.TS_WORKING_STATUS === 'Working'}
-                    value={formData.TS_JIRA_TICKET} 
-                    onChange={(e) => setFormData({...formData, TS_JIRA_TICKET: e.target.value})} 
+                    value={formData.TS_JIRA_TICKET}
+                    onChange={(e) => setFormData({ ...formData, TS_JIRA_TICKET: e.target.value })}
                   />
                 </div>
               </div>
 
               <div>
                 <label>Activity</label>
-                <select value={formData.TS_ACTIVITY} onChange={(e) => setFormData({...formData, TS_ACTIVITY: e.target.value})}>
+                <select value={formData.TS_ACTIVITY} onChange={(e) => setFormData({ ...formData, TS_ACTIVITY: e.target.value })}>
                   {activities.map(a => (
                     <option key={a.activity_id} value={a.activity_name}>{a.activity_name}</option>
                   ))}
@@ -136,22 +136,22 @@ const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
 
               <div>
                 <label>Effort Hours</label>
-                <input 
-                  type="number" 
-                  step="0.01" 
-                  value={formData.TS_EFFORT_HOURS} 
-                  onChange={(e) => setFormData({...formData, TS_EFFORT_HOURS: e.target.value})} 
-                  required 
+                <input
+                  type="number"
+                  step="0.01"
+                  value={formData.TS_EFFORT_HOURS}
+                  onChange={(e) => setFormData({ ...formData, TS_EFFORT_HOURS: e.target.value })}
+                  required
                   placeholder="e.g. 2.50"
                 />
               </div>
 
               <div>
                 <label>Team</label>
-                <input 
-                  type="text" 
-                  value={formData.TS_TEAM} 
-                  onChange={(e) => setFormData({...formData, TS_TEAM: e.target.value})} 
+                <input
+                  type="text"
+                  value={formData.TS_TEAM}
+                  onChange={(e) => setFormData({ ...formData, TS_TEAM: e.target.value })}
                   placeholder="e.g. AM"
                 />
               </div>
@@ -159,11 +159,11 @@ const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
           ) : (
             <div>
               <label>Reason for {formData.TS_WORKING_STATUS} (Comments Required)</label>
-              <textarea 
-                value={formData.TS_COMMENTS} 
-                onChange={(e) => setFormData({...formData, TS_COMMENTS: e.target.value})} 
-                placeholder={`Reason for ${formData.TS_WORKING_STATUS.toLowerCase()}...`} 
-                required 
+              <textarea
+                value={formData.TS_COMMENTS}
+                onChange={(e) => setFormData({ ...formData, TS_COMMENTS: e.target.value })}
+                placeholder={`Reason for ${formData.TS_WORKING_STATUS.toLowerCase()}...`}
+                required
               />
             </div>
           )}
@@ -171,10 +171,10 @@ const LogHoursModal = ({ onClose, onSuccess, user, initialData }) => {
           {!isOffDay && (
             <div>
               <label>Comments (Optional)</label>
-              <textarea 
-                value={formData.TS_COMMENTS} 
-                onChange={(e) => setFormData({...formData, TS_COMMENTS: e.target.value})} 
-                placeholder="Any additional notes..." 
+              <textarea
+                value={formData.TS_COMMENTS}
+                onChange={(e) => setFormData({ ...formData, TS_COMMENTS: e.target.value })}
+                placeholder="Any additional notes..."
               />
             </div>
           )}

@@ -9,7 +9,7 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
   const [showModal, setShowModal] = useState(false);
   const [editingEntry, setEditingEntry] = useState(null);
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
-  
+
   // Navigation
   const [activeTab, setActiveTab] = useState('dashboard'); // dashboard, team-stats
   const [selectedTicket, setSelectedTicket] = useState(null);
@@ -164,17 +164,17 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
         </div>
 
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
-          <button 
+          <button
             className={`btn ${activeTab === 'dashboard' ? 'btn-active' : ''}`}
             onClick={() => { setActiveTab('dashboard'); setSelectedTicket(null); }}
             style={{ justifyContent: 'flex-start', color: activeTab === 'dashboard' ? 'var(--primary)' : 'var(--text-muted)', background: activeTab === 'dashboard' ? 'rgba(99, 102, 241, 0.1)' : 'transparent' }}
           >
             <BarChart3 size={20} /> My Dashboard
           </button>
-          
+
           {user.access_team && (
-            <button 
-              className={`btn ${activeTab === 'team' ? 'btn-primary' : ''}`} 
+            <button
+              className={`btn ${activeTab === 'team' ? 'btn-primary' : ''}`}
               onClick={() => { setActiveTab('team'); setSelectedTicket(null); }}
               style={{ justifyContent: 'flex-start', color: activeTab === 'team' ? 'white' : 'var(--text-muted)', background: activeTab === 'team' ? 'var(--primary)' : 'transparent' }}
             >
@@ -189,8 +189,8 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
           )}
         </nav>
 
-        <button 
-          className="btn" 
+        <button
+          className="btn"
           onClick={() => { setShowChangePassword(true); setCpError(''); setCpSuccess(''); }}
           style={{ justifyContent: 'flex-start', color: 'var(--text-muted)', marginBottom: '0.5rem', background: 'rgba(99, 102, 241, 0.05)' }}
         >
@@ -305,7 +305,7 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
 
                         let rowBg = 'transparent';
                         let rowColor = 'inherit';
-                        
+
                         if (ts.TS_WORKING_STATUS === 'PTO' || ts.TS_WORKING_STATUS === 'Holiday') {
                           rowBg = 'rgba(16, 185, 129, 0.1)';
                           rowColor = 'var(--success)';
@@ -374,30 +374,30 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
                           <td>{td.TS_ACTIVITY}</td>
                           <td style={{ color: 'var(--primary)', fontWeight: 700 }}>{parseFloat(td.TS_EFFORT_HOURS).toFixed(2)} hrs</td>
                           <td style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }} title={td.TS_COMMENTS}>
-                            {td.TS_COMMENTS && td.TS_COMMENTS.length > 20 
-                              ? td.TS_COMMENTS.substring(0, 20) + '...' 
+                            {td.TS_COMMENTS && td.TS_COMMENTS.length > 20
+                              ? td.TS_COMMENTS.substring(0, 20) + '...'
                               : td.TS_COMMENTS || '-'}
                           </td>
                         </tr>
                       ))}
                     </tbody>
-                    </table>
-                  </div>
-                  <div style={{ padding: '1.5rem', background: 'rgba(99, 102, 241, 0.05)', textAlign: 'right' }}>
-                    <p style={{ fontSize: '1rem', fontWeight: 700 }}>
-                      Total Effort Hours Consumed: <span style={{ color: 'var(--primary)', fontSize: '1.5rem', marginLeft: '0.5rem' }}>
-                        {ticketDetails.reduce((acc, curr) => acc + parseFloat(curr.TS_EFFORT_HOURS || 0), 0).toFixed(2)} hrs
-                      </span>
-                    </p>
-                  </div>
+                  </table>
                 </div>
+                <div style={{ padding: '1.5rem', background: 'rgba(99, 102, 241, 0.05)', textAlign: 'right' }}>
+                  <p style={{ fontSize: '1rem', fontWeight: 700 }}>
+                    Total Effort Hours Consumed: <span style={{ color: 'var(--primary)', fontSize: '1.5rem', marginLeft: '0.5rem' }}>
+                      {ticketDetails.reduce((acc, curr) => acc + parseFloat(curr.TS_EFFORT_HOURS || 0), 0).toFixed(2)} hrs
+                    </span>
+                  </p>
+                </div>
+              </div>
             ) : (
               <div className="glass-card" style={{ padding: '0' }}>
                 <div style={{ padding: '1.5rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                   <h2 style={{ fontSize: '1.25rem', fontWeight: 600 }}>Active Tickets Consumption</h2>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                     {user.role === 'AD' && (
-                      <select 
+                      <select
                         value={teamFilter}
                         onChange={(e) => setTeamFilter(e.target.value)}
                         style={{ padding: '0.5rem', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--glass)', color: 'var(--text)' }}
@@ -409,9 +409,9 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
                       </select>
                     )}
                     <div style={{ position: 'relative', width: '200px' }}>
-                      <input 
-                        type="text" 
-                        placeholder="Search Ticket..." 
+                      <input
+                        type="text"
+                        placeholder="Search Ticket..."
                         value={ticketSearch}
                         onChange={(e) => setTicketSearch(e.target.value)}
                         style={{ padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid var(--border)', width: '100%' }}
@@ -420,21 +420,21 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
                   </div>
                 </div>
                 <div style={{ padding: '0.75rem 1.5rem', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--border)', display: 'flex', gap: '1rem' }}>
-                  <button 
+                  <button
                     onClick={() => setStatusFilter('All')}
                     className={`btn ${statusFilter === 'All' ? 'btn-primary' : ''}`}
                     style={{ padding: '0.4rem 1rem', fontSize: '0.875rem', background: statusFilter === 'All' ? 'var(--primary)' : 'transparent', color: statusFilter === 'All' ? 'white' : 'var(--text-muted)' }}
                   >
                     All Tickets
                   </button>
-                  <button 
+                  <button
                     onClick={() => setStatusFilter('In progress')}
                     className={`btn ${statusFilter === 'In progress' ? 'btn-primary' : ''}`}
                     style={{ padding: '0.4rem 1rem', fontSize: '0.875rem', background: statusFilter === 'In progress' ? 'var(--primary)' : 'transparent', color: statusFilter === 'In progress' ? 'white' : 'var(--text-muted)' }}
                   >
                     In Progress
                   </button>
-                  <button 
+                  <button
                     onClick={() => setStatusFilter('Completed')}
                     className={`btn ${statusFilter === 'Completed' ? 'btn-primary' : ''}`}
                     style={{ padding: '0.4rem 1rem', fontSize: '0.875rem', background: statusFilter === 'Completed' ? 'var(--primary)' : 'transparent', color: statusFilter === 'Completed' ? 'white' : 'var(--text-muted)' }}
@@ -463,35 +463,35 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
                         })
                         .sort((a, b) => b.total_effort - a.total_effort)
                         .map((stat, idx) => (
-                        <tr key={idx} className="clickable-row" onClick={() => fetchTicketDetails(stat.TS_JIRA_TICKET)} style={{ cursor: 'pointer' }}>
-                          <td style={{ fontWeight: 700, color: 'var(--primary)' }}>{stat.TS_JIRA_TICKET}</td>
-                          <td>
-                            {stat.teams ? stat.teams.split(',').map((t, i) => (
-                              <span key={i} className="badge" style={{ marginRight: '0.25rem', background: 'rgba(99, 102, 241, 0.1)', color: 'var(--primary)' }}>{t}</span>
-                            )) : '-'}
-                          </td>
-                          <td>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                              <span style={{ fontWeight: 800, fontSize: '1.1rem' }}>{parseFloat(stat.total_effort).toFixed(2)}</span>
-                              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>hrs</span>
-                            </div>
-                          </td>
-                          <td>
-                            <span className="badge" style={{ 
-                              background: stat.status === 'In progress' ? 'rgba(99, 102, 241, 0.1)' : 'rgba(16, 185, 129, 0.1)',
-                              color: stat.status === 'In progress' ? 'var(--primary)' : 'var(--success)'
-                            }}>
-                              {stat.status || 'In progress'}
-                            </span>
-                          </td>
-                          <td>{stat.entries_count} entries</td>
-                          <td style={{ textAlign: 'right' }}>
-                            <button className="btn" style={{ color: 'var(--primary)', gap: '0.4rem' }}>
-                              View Stats <ExternalLink size={14} />
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
+                          <tr key={idx} className="clickable-row" onClick={() => fetchTicketDetails(stat.TS_JIRA_TICKET)} style={{ cursor: 'pointer' }}>
+                            <td style={{ fontWeight: 700, color: 'var(--primary)' }}>{stat.TS_JIRA_TICKET}</td>
+                            <td>
+                              {stat.teams ? stat.teams.split(',').map((t, i) => (
+                                <span key={i} className="badge" style={{ marginRight: '0.25rem', background: 'rgba(99, 102, 241, 0.1)', color: 'var(--primary)' }}>{t}</span>
+                              )) : '-'}
+                            </td>
+                            <td>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <span style={{ fontWeight: 800, fontSize: '1.1rem' }}>{parseFloat(stat.total_effort).toFixed(2)}</span>
+                                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>hrs</span>
+                              </div>
+                            </td>
+                            <td>
+                              <span className="badge" style={{
+                                background: stat.status === 'In progress' ? 'rgba(99, 102, 241, 0.1)' : 'rgba(16, 185, 129, 0.1)',
+                                color: stat.status === 'In progress' ? 'var(--primary)' : 'var(--success)'
+                              }}>
+                                {stat.status || 'In progress'}
+                              </span>
+                            </td>
+                            <td>{stat.entries_count} entries</td>
+                            <td style={{ textAlign: 'right' }}>
+                              <button className="btn" style={{ color: 'var(--primary)', gap: '0.4rem' }}>
+                                View Stats <ExternalLink size={14} />
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
                       {teamStats.length === 0 && !loadingStats && (
                         <tr>
                           <td colSpan="4" style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>
@@ -511,7 +511,7 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
       {showModal && (
         <LogHoursModal
           onClose={() => { setShowModal(false); setEditingEntry(null); }}
-          onSuccess={() => { setShowModal(false); setEditingEntry(null); fetchTimesheets(); if(activeTab === 'team') fetchTeamStats(); }}
+          onSuccess={() => { setShowModal(false); setEditingEntry(null); fetchTimesheets(); if (activeTab === 'team') fetchTeamStats(); }}
           user={user}
           initialData={editingEntry}
         />
@@ -542,10 +542,10 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
                 <label>User ID</label>
                 <div style={{ position: 'relative' }}>
                   <User size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                  <input 
-                    type="text" 
-                    value={cpData.userId} 
-                    readOnly 
+                  <input
+                    type="text"
+                    value={cpData.userId}
+                    readOnly
                     style={{ paddingLeft: '3rem', background: 'rgba(0,0,0,0.05)', cursor: 'not-allowed' }}
                   />
                 </div>
@@ -554,9 +554,9 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
                 <label>Current Password</label>
                 <div style={{ position: 'relative' }}>
                   <ShieldCheck size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                  <input 
-                    type="password" 
-                    required 
+                  <input
+                    type="password"
+                    required
                     placeholder="Enter current password"
                     value={cpData.currentPassword}
                     onChange={(e) => setCpData({ ...cpData, currentPassword: e.target.value })}
@@ -568,9 +568,9 @@ const Dashboard = ({ user, setUser, theme, toggleTheme }) => {
                 <label>New Password</label>
                 <div style={{ position: 'relative' }}>
                   <Key size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                  <input 
-                    type="password" 
-                    required 
+                  <input
+                    type="password"
+                    required
                     placeholder="Enter new password"
                     value={cpData.newPassword}
                     onChange={(e) => setCpData({ ...cpData, newPassword: e.target.value })}

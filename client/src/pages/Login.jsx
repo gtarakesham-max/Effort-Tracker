@@ -89,29 +89,29 @@ const Login = ({ setUser }) => {
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', padding: '1rem' }}>
       <div className="glass-card animate-in" style={{ width: '100%', maxWidth: '400px' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div style={{ 
-            width: '64px', 
-            height: '64px', 
-            background: 'var(--primary)', 
-            borderRadius: '1rem', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
+          <div style={{
+            width: '64px',
+            height: '64px',
+            background: 'var(--primary)',
+            borderRadius: '1rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             margin: '0 auto 1rem',
             boxShadow: '0 8px 16px rgba(99, 102, 241, 0.3)'
           }}>
             {forgotMode === 'none' ? <LogIn color="white" size={32} /> : <KeyRound color="white" size={32} />}
           </div>
-          
+
           <h1 style={{ fontSize: '1.875rem', fontWeight: 700 }}>
-            {forgotMode === 'none' ? 'Welcome Back' : 
-             forgotMode === 'email' ? 'Forgot Password' : 
-             forgotMode === 'otp' ? 'Verify OTP' : 'New Password'}
+            {forgotMode === 'none' ? 'Welcome Back' :
+              forgotMode === 'email' ? 'Forgot Password' :
+                forgotMode === 'otp' ? 'Verify OTP' : 'New Password'}
           </h1>
           <p style={{ color: 'var(--text-muted)' }}>
-            {forgotMode === 'none' ? 'Login to manage your efforts' : 
-             forgotMode === 'email' ? 'Enter your email to receive an OTP' : 
-             forgotMode === 'otp' ? 'Check your email for the 6-digit code' : 'Enter your new secure password'}
+            {forgotMode === 'none' ? 'Login to manage your efforts' :
+              forgotMode === 'email' ? 'Enter your email to receive an OTP' :
+                forgotMode === 'otp' ? 'Check your email for the 6-digit code' : 'Enter your new secure password'}
           </p>
         </div>
 
@@ -122,13 +122,13 @@ const Login = ({ setUser }) => {
               <label>Username or User ID</label>
               <div style={{ position: 'relative' }}>
                 <User size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                <input 
-                  type="text" 
-                  placeholder="Enter username or ID" 
+                <input
+                  type="text"
+                  placeholder="Enter username or ID"
                   value={usernameOrId}
                   onChange={(e) => setUsernameOrId(e.target.value)}
                   style={{ paddingLeft: '3rem' }}
-                  required 
+                  required
                 />
               </div>
             </div>
@@ -137,13 +137,13 @@ const Login = ({ setUser }) => {
               <label>Password</label>
               <div style={{ position: 'relative' }}>
                 <Lock size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                <input 
-                  type="password" 
-                  placeholder="••••••••" 
+                <input
+                  type="password"
+                  placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   style={{ paddingLeft: '3rem' }}
-                  required 
+                  required
                 />
               </div>
             </div>
@@ -155,8 +155,8 @@ const Login = ({ setUser }) => {
               {loading ? 'Logging in...' : 'Sign In'}
             </button>
 
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={() => setForgotMode('email')}
               style={{ background: 'none', border: 'none', color: 'var(--primary)', fontSize: '0.875rem', cursor: 'pointer', marginTop: '1rem' }}
             >
@@ -172,13 +172,13 @@ const Login = ({ setUser }) => {
               <label>User ID</label>
               <div style={{ position: 'relative' }}>
                 <User size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                <input 
-                  type="text" 
-                  placeholder="Enter your User ID" 
+                <input
+                  type="text"
+                  placeholder="Enter your User ID"
                   value={userIdForReset}
                   onChange={(e) => setUserIdForReset(e.target.value)}
                   style={{ paddingLeft: '3rem' }}
-                  required 
+                  required
                 />
               </div>
             </div>
@@ -187,13 +187,13 @@ const Login = ({ setUser }) => {
               <label>Registered Email</label>
               <div style={{ position: 'relative' }}>
                 <Mail size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                <input 
-                  type="email" 
-                  placeholder="name@company.com" 
+                <input
+                  type="email"
+                  placeholder="name@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   style={{ paddingLeft: '3rem' }}
-                  required 
+                  required
                 />
               </div>
             </div>
@@ -212,14 +212,14 @@ const Login = ({ setUser }) => {
           <form onSubmit={handleVerifyOtp} className="grid">
             <div>
               <label>Enter 6-digit OTP</label>
-              <input 
-                type="text" 
-                placeholder="123456" 
+              <input
+                type="text"
+                placeholder="123456"
                 maxLength="6"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
                 style={{ textAlign: 'center', letterSpacing: '8px', fontSize: '1.25rem', fontWeight: 700 }}
-                required 
+                required
               />
             </div>
             {success && <p style={{ color: 'var(--success)', fontSize: '0.875rem', textAlign: 'center' }}>{success}</p>}
@@ -240,13 +240,13 @@ const Login = ({ setUser }) => {
               <label>New Password</label>
               <div style={{ position: 'relative' }}>
                 <Lock size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                <input 
-                  type="password" 
-                  placeholder="••••••••" 
+                <input
+                  type="password"
+                  placeholder="••••••••"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   style={{ paddingLeft: '3rem' }}
-                  required 
+                  required
                 />
               </div>
             </div>
